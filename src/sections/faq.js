@@ -7,6 +7,10 @@ export function initFAQ() {
 
   const faqData = [
     { 
+      q: "When is Xenoria 2026 taking place?", 
+      a: "Xenoria 2026 is scheduled from March 31 to April 2, 2026. Mark your calendars for three days of cosmic technical immersion." 
+    },
+    { 
       q: "Who can participate?", 
       a: "Open to all students from any college or university. Whether you're a freshman or a PhD candidate, curiosity is the only prerequisite." 
     },
@@ -25,23 +29,23 @@ export function initFAQ() {
   ];
 
   faq.innerHTML = `
-    <div class="faq__container">
+    <div class="faq__container" itemscope itemtype="https://schema.org/FAQPage">
       <div class="section-header">
         <p class="section-label">QUERY :: INTERFACE</p>
         <h2 id="faq-heading">Frequently Asked Questions</h2>
       </div>
       <div class="faq__grid" role="list">
         ${faqData.map((item, i) => `
-          <div class="faq__block" role="listitem">
-            <button class="faq__trigger" aria-expanded="false" aria-controls="faq-desc-${i}">
+          <div class="faq__block" role="listitem" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <button class="faq__trigger" aria-expanded="false" aria-controls="faq-desc-${i}" itemprop="name">
               <span class="faq__label">${item.q}</span>
               <div class="faq__status">
                 <span class="faq__status-icon"></span>
               </div>
             </button>
-            <div id="faq-desc-${i}" class="faq__content" hidden>
+            <div id="faq-desc-${i}" class="faq__content" hidden itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
               <div class="faq__content-inner">
-                <div class="faq__content-body">
+                <div class="faq__content-body" itemprop="text">
                   <p>${item.a}</p>
                 </div>
               </div>

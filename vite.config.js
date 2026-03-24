@@ -6,4 +6,9 @@ export default defineConfig({
   server: {
     allowedHosts: ['tech.mohdsahl.me'],
   },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/test/setup.js'],
+  },
 });

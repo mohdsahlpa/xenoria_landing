@@ -158,8 +158,64 @@ export function initEventDetail(eventId) {
     return;
   }
 
+  // UPDATE META TAGS FOR SEO/AEO/GEO
+  document.title = `${event.title} | Xenoria 2026 — College of Engineering`;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) {
+    metaDesc.setAttribute("content", `${event.title}: ${event.desc.substring(0, 150)}... Register now for Xenoria 2026.`);
+  }
+
+  // ADD JSON-LD FOR THE SPECIFIC EVENT
+  const eventJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": `${event.title} - Xenoria 2026`,
+    "description": event.desc,
+    "startDate": "2026-03-31T09:00:00+05:30", // Assuming start of fest
+    "endDate": "2026-04-02T18:00:00+05:30",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "College of Engineering, Main Campus",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Kerala",
+        "addressCountry": "IN"
+      }
+    },
+    "image": event.image,
+    "offers": {
+      "@type": "Offer",
+      "url": event.regLink,
+      "price": "0", // General entry, specific fees in desc
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock"
+    }
+  };
+
+  // Inject or Update JSON-LD
+  let script = document.getElementById('event-json-ld');
+  if (!script) {
+    script = document.createElement('script');
+    script.id = 'event-json-ld';
+    script.type = 'application/ld+json';
+    document.head.appendChild(script);
+  }
+  script.textContent = JSON.stringify(eventJsonLd);
+
   container.innerHTML = `
-    <div class="event-detail__wrapper" style="--detail-accent: ${event.accent}">
+    <div class="event-detail__wrapper" style="--detail-accent: ${event.accent}" itemscope itemtype="https://schema.org/Event">
+      <meta itemprop="startDate" content="2026-03-31T09:00:00+05:30" />
+      <meta itemprop="endDate" content="2026-04-02T18:00:00+05:30" />
+      <div itemprop="location" itemscope itemtype="https://schema.org/Place" style="display:none">
+        <meta itemprop="name" content="College of Engineering, Main Campus" />
+        <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <meta itemprop="addressRegion" content="Kerala" />
+          <meta itemprop="addressCountry" content="IN" />
+        </div>
+      </div>
+      
       <div class="event-detail__nav">
         <a href="/events" class="back-link" data-navigo>
           <span class="arrow">←</span> BACK_TO_MISSION_CONTROL
@@ -168,19 +224,19 @@ export function initEventDetail(eventId) {
       
       <div class="event-detail__content">
         <div class="event-detail__poster">
-          <img src="${event.image}" alt="${event.title} Poster" />
+          <img src="${event.image}" alt="${event.title} Poster" itemprop="image" />
           <div class="poster-overlay"></div>
         </div>
         
         <div class="event-detail__body">
           <header class="detail-header">
             <span class="detail-category">${event.category}</span>
-            <h1 class="detail-title">${event.title}</h1>
+            <h1 class="detail-title" itemprop="name">${event.title}</h1>
             <span class="detail-id">${event.id}</span>
           </header>
 
           <div class="detail-description">
-            <p>${event.desc}</p>
+            <p itemprop="description">${event.desc}</p>
           </div>
 
           <div class="detail-info-grid">
@@ -198,8 +254,10 @@ export function initEventDetail(eventId) {
             </div>
           </div>
 
-          <div class="detail-actions">
-            <a href="${event.regLink}" target="_blank" class="primary-reg-btn">
+          <div class="detail-actions" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <meta itemprop="price" content="0" />
+            <meta itemprop="priceCurrency" content="INR" />
+            <a href="${event.regLink}" target="_blank" class="primary-reg-btn" itemprop="url">
               INITIALIZE_REGISTRATION
             </a>
           </div>
