@@ -1,0 +1,53 @@
+:root {
+  /* High-Tech Minimalist Set */
+  --font-hero:    'Orbitron', sans-serif;         /* Futuristic, sharp */
+  --font-accent:  'Fraunces', serif;              /* Elegant serif contrast */
+  --font-body:    'Inter', sans-serif;            /* Clean UI */
+  --font-label:   'JetBrains Mono', monospace;    /* Terminal / Technical */
+}
+
+/* Redefined Header Hierarchy */
+h1, .hero__title {
+  font-family: var(--font-hero);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.15em; /* Wide, airy tracking */
+  line-height: 1;
+}
+
+h2, .section-title {
+  font-family: var(--font-hero);
+  font-weight: 700;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  letter-spacing: 0.05em;
+}
+
+.section-label, .about__label, .hero__eyebrow {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-nebula-cyan);
+}
+
+/* Refined UI components */
+.countdown__value {
+  font-family: var(--font-hero);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+.dock__link {
+  font-family: var(--font-hero);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+blockquote, .featured-text {
+  font-family: var(--font-accent);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--color-text-secondary);
+}

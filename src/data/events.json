@@ -1,0 +1,122 @@
+[
+  {
+    "id": "CS-001",
+    "title": "Hack-A-Thon 2.0",
+    "category": "CS",
+    "desc": "A 24-hour sprint to build innovative solutions using modern tech stacks. Participants will have access to mentors and high-speed internet to bring their ideas to life.",
+    "date": "March 24",
+    "team": "2-4 members",
+    "prize": "₹25,000",
+    "accent": "#00f2ff",
+    "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1000",
+    "regLink": "https://forms.gle/example1"
+  },
+  {
+    "id": "CS-002",
+    "title": "Bug Squash",
+    "category": "CS",
+    "desc": "Find and fix critical bugs in a pre-built codebase under time pressure. Test your debugging skills and win amazing prizes.",
+    "date": "March 25",
+    "team": "Solo",
+    "prize": "₹10,000",
+    "accent": "#00f2ff",
+    "image": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=1000",
+    "regLink": "https://forms.gle/example2"
+  },
+  {
+    "id": "ECE-001",
+    "title": "Circuit Saga",
+    "category": "ECE",
+    "desc": "Design and debug complex analog and digital circuits on a breadboard. Show your prowess in electronics and system design.",
+    "date": "March 24",
+    "team": "2 members",
+    "prize": "₹15,000",
+    "accent": "#ff00e5",
+    "image": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&q=80&w=1000",
+    "regLink": "https://forms.gle/example3"
+  },
+  {
+    "id": "ECE-002",
+    "title": "Signal Quest",
+    "category": "ECE",
+    "desc": "Analyze and process signals to retrieve hidden data in real-time. A challenge for those who love signal processing and communication systems.",
+    "date": "March 25",
+    "team": "2 members",
+    "prize": "₹12,000",
+    "accent": "#ff00e5",
+    "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000",
+    "regLink": "https://forms.gle/example4"
+  },
+  {
+    "id": "EEE-001",
+    "title": "Grid Master",
+    "category": "EEE",
+    "desc": "Simulate and optimize a smart power grid for maximum efficiency. Learn about the future of energy management and distribution.",
+    "date": "March 24",
+    "team": "2-3 members",
+    "prize": "₹18,000",
+    "accent": "#ffd700",
+    "image": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=1000",
+    "regLink": "https://forms.gle/example5"
+  },
+  {
+    "id": "EEE-002",
+    "title": "Motor Mania",
+    "category": "EEE",
+    "desc": "Assemble and control a high-performance DC motor setup. A hands-on competition for electrical engineering enthusiasts.",
+    "date": "March 26",
+    "team": "2 members",
+    "prize": "₹15,000",
+    "accent": "#ffd700",
+    "image": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1000",
+    "regLink": "https://forms.gle/example6"
+  },
+  {
+    "id": "MECH-001",
+    "title": "CAD Design Expo",
+    "category": "MECH",
+    "desc": "Create intricate 3D models of mechanical parts based on specifications. Showcase your proficiency in industry-standard CAD software.",
+    "date": "March 24",
+    "team": "Solo",
+    "prize": "₹12,000",
+    "accent": "#ff3c00",
+    "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
+    "regLink": "https://forms.gle/example7"
+  },
+  {
+    "id": "MECH-002",
+    "title": "Aero Glider",
+    "category": "MECH",
+    "desc": "Construct a hand-launched glider with maximum flight time and stability. Apply principles of aerodynamics and structural design.",
+    "date": "March 25",
+    "team": "3 members",
+    "prize": "₹20,000",
+    "accent": "#ff3c00",
+    "image": "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=1000",
+    "regLink": "https://forms.gle/example8"
+  },
+  {
+    "id": "CIVIL-001",
+    "title": "Bridge It",
+    "category": "CIVIL",
+    "desc": "Build a scale model bridge that can withstand maximum load-to-weight ratio. A true test of structural engineering and creativity.",
+    "date": "March 24",
+    "team": "3-4 members",
+    "prize": "₹20,000",
+    "accent": "#00ff8c",
+    "image": "https://images.unsplash.com/photo-1545459720-aac273a27b4d?auto=format&fit=crop&q=80&w=1000",
+    "regLink": "https://forms.gle/example9"
+  },
+  {
+    "id": "CIVIL-002",
+    "title": "Town Planner",
+    "category": "CIVIL",
+    "desc": "Design a sustainable and efficient urban layout for a future city. Focus on green spaces, infrastructure, and smart transit.",
+    "date": "March 26",
+    "team": "2 members",
+    "prize": "₹15,000",
+    "accent": "#00ff8c",
+    "image": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=80&w=1000",
+    "regLink": "https://forms.gle/example10"
+  }
+]

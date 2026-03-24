@@ -1,0 +1,147 @@
+#dock {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100vw - 48px);
+  z-index: 9000;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+}
+
+.dock__container {
+  width: auto;
+  pointer-events: auto;
+}
+
+.dock__inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--dock-bg);
+  border: 1px solid var(--dock-border);
+  border-radius: var(--dock-radius);
+  backdrop-filter: var(--dock-blur);
+  -webkit-backdrop-filter: var(--dock-blur);
+  box-shadow: var(--dock-shadow);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  max-width: 90vw;
+  padding: 0 8px;
+}
+
+.dock__header {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 54px;
+}
+
+.dock__logo {
+  font-family: var(--font-hero);
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+}
+
+.dock__logo span {
+  color: var(--color-nebula-cyan);
+}
+
+.dock__active-display {
+  display: none;
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--color-nebula-cyan);
+  padding-left: 1rem;
+}
+
+.dock__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.toggle__line {
+  width: 14px;
+  height: 1.5px;
+  background: var(--color-nebula-cyan);
+  transition: all 0.3s ease;
+}
+
+.dock__nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dock__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dock__divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 4px;
+}
+
+.dock__glow {
+  display: none;
+}
+
+.dock__link {
+  font-family: var(--font-label);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  letter-spacing: 0.12em;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  display: block;
+}
+
+.dock__link:hover {
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dock__link[aria-current="true"] {
+  color: var(--color-nebula-cyan);
+  background: rgba(0, 229, 255, 0.1);
+}
+
+.dock__link-icon {
+  display: none;
+}
+
+/* --- Mobile Redesign: Hidden on mobile, FAB takes over --- */
+@media (max-width: 992px) {
+  #dock {
+    display: none;
+  }
+}

@@ -1,0 +1,208 @@
+#schedule {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background: transparent;
+  overflow: hidden;
+}
+
+.schedule__day-indicator {
+  position: fixed;
+  top: clamp(100px, 15vh, 140px);
+  left: clamp(2rem, 5vw, 4rem);
+  z-index: 100;
+  font-family: var(--font-mono);
+  color: var(--color-nebula-blue);
+  background: rgba(12, 11, 10, 0.6);
+  backdrop-filter: blur(12px);
+  padding: 0.8rem 1.5rem;
+  border-left: 2px solid var(--color-nebula-blue);
+  border-radius: 4px;
+  pointer-events: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.day-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.day-number {
+  font-family: var(--font-hero);
+  font-size: 1.5rem;
+  color: var(--color-text-primary);
+  font-weight: 800;
+}
+
+.schedule__track {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100vh;
+  width: 300vw; /* 3 days */
+  will-change: transform;
+}
+
+.schedule__day {
+  flex: 0 0 100vw;
+  height: 100vh;
+  padding: 0 10vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background: radial-gradient(circle at 70% 30%, rgba(227, 100, 20, 0.03) 0%, transparent 50%);
+}
+
+.day__bg-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-hero);
+  font-size: clamp(15rem, 40vw, 35rem);
+  line-height: 1;
+  color: var(--color-text-primary);
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+
+.day__content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.day__title {
+  font-family: var(--font-hero);
+  font-size: clamp(3rem, 10vw, 6rem);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-primary);
+  letter-spacing: -0.03em;
+}
+
+.day__date {
+  font-family: var(--font-mono);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--color-nebula-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  margin-bottom: 4rem;
+  display: block;
+}
+
+.day__events {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.day__event-item {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  padding: 2rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.day__event-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: var(--color-nebula-blue);
+  opacity: 0.1;
+  transition: width 0.4s ease;
+}
+
+.day__event-item:hover {
+  transform: translateX(15px);
+  border-color: rgba(227, 100, 20, 0.4);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.day__event-item:hover::before {
+  width: 100%;
+}
+
+.event-time {
+  font-family: var(--font-mono);
+  color: var(--color-nebula-blue);
+  font-weight: 700;
+  font-size: 1.1rem;
+  min-width: 80px;
+  position: relative;
+}
+
+.event-name {
+  font-family: var(--font-label);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: var(--color-text-primary);
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+@media (max-width: 992px) {
+  .schedule__day {
+    padding: 0 5vw;
+  }
+}
+
+@media (max-width: 768px) {
+  #schedule {
+    height: auto;
+    overflow: visible;
+  }
+  
+  .schedule__day-indicator {
+    position: sticky;
+    top: 80px;
+    left: 1.5rem;
+    margin-bottom: -60px;
+    width: fit-content;
+  }
+  
+  .schedule__track {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+  }
+  
+  .schedule__day {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    padding: 120px 1.5rem 80px;
+  }
+  
+  .day__bg-number {
+    font-size: 20rem;
+    top: 20%;
+  }
+  
+  .day__event-item {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .event-time {
+    font-size: 0.9rem;
+    min-width: 60px;
+  }
+}

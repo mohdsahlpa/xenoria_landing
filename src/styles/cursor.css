@@ -1,0 +1,53 @@
+@media (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+#cursor {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: var(--cursor-blend);
+  display: none; /* Hide by default, show if pointer is fine */
+}
+
+@media (pointer: fine) {
+  #cursor { display: block; }
+}
+
+.cursor__ring {
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--cursor-ring);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, border-color 0.3s, opacity 0.3s, border-radius 0.3s;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.3), inset 0 0 8px rgba(0, 229, 255, 0.1);
+}
+
+.cursor__dot {
+  width: 5px; height: 5px;
+  background: var(--cursor-dot);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px var(--cursor-dot), 0 0 20px rgba(0,229,255,0.5);
+}
+
+/* Cursor states */
+#cursor.is-hovering .cursor__ring {
+  width: 56px; height: 56px;
+  border-color: var(--color-nebula-violet);
+  background: rgba(123, 47, 255, 0.08);
+}
+
+#cursor.is-clicking .cursor__ring {
+  width: 24px; height: 24px;
+  border-color: var(--color-nebula-pink);
+}
+
+#cursor.is-text .cursor__ring {
+  width: 3px; height: 28px;
+  border-radius: 2px;
+  border-color: var(--color-text-primary);
+}

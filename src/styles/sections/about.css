@@ -1,0 +1,180 @@
+#about {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 5dvh, 4rem) 5%;
+  background: transparent;
+  perspective: 1500px;
+  overflow: hidden;
+}
+
+.about__container {
+  max-width: var(--container-max-width);
+  width: 100%;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: clamp(4rem, 8vw, 10rem);
+  align-items: center;
+  transform-style: preserve-3d;
+  will-change: transform, opacity, filter;
+  padding: 2rem;
+  position: relative;
+}
+
+.about__text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about__label {
+  font-family: var(--font-label);
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  letter-spacing: 0.6em;
+  color: var(--color-nebula-cyan);
+  text-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+  text-transform: uppercase;
+}
+
+.about__text h2 {
+  font-family: var(--font-hero);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.05;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.about__text h2 em {
+  font-family: var(--font-accent);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-nebula-violet);
+  text-shadow: 0 0 30px rgba(123, 47, 255, 0.4);
+}
+
+.about__text p {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.2vw, 1.3rem);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  max-width: 580px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.about__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about__stat {
+  background: rgba(8, 13, 26, 0.55);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  backdrop-filter: blur(25px);
+  padding: clamp(1.5rem, 3vw, 2.8rem);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.about__stat:hover {
+  transform: translateX(12px);
+  border-color: var(--color-nebula-cyan);
+  background: rgba(0, 229, 255, 0.05);
+  box-shadow: -10px 10px 30px rgba(0, 229, 255, 0.1);
+}
+
+.about__stat-number {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.about__stat-label {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  color: var(--color-nebula-cyan);
+  opacity: 0.8;
+}
+
+/* --- Electric Spark Overlay --- */
+.reveal-holo {
+  position: relative;
+  will-change: opacity, transform, filter, color;
+}
+
+/* High-voltage "spark" flash - improved contrast */
+.is-sparking {
+  color: #fff !important;
+  text-shadow: 
+    0 0 12px #fff,
+    0 0 25px var(--color-nebula-cyan),
+    0 0 50px var(--color-nebula-cyan) !important;
+  filter: brightness(2.5) contrast(1.2) !important;
+}
+
+.is-glitching {
+  transform: translateX(var(--glitch-x, 0));
+}
+
+@media (max-width: 992px) {
+  #about {
+    padding: clamp(4rem, 10vh, 8rem) 1.5rem;
+  }
+  .about__container {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    text-align: center;
+    padding: 0;
+  }
+  .about__text {
+    align-items: center;
+  }
+  .about__text p { 
+    margin: 0 auto; 
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+  }
+  .about__stats { 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 1.25rem;
+  }
+  .about__stat { 
+    flex: 1; 
+    min-width: 240px; 
+    padding: clamp(1.5rem, 5vw, 2.2rem);
+    text-align: center;
+  }
+  .about__stat:hover {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 480px) {
+  .about__stat {
+    min-width: 100%;
+  }
+  .about__text h2 {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+  .about__label {
+    letter-spacing: 0.4em;
+  }
+}

@@ -1,0 +1,93 @@
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+  width: 100%;
+  background-color: var(--color-void);
+}
+
+:root {
+  --container-max-width: 1200px;
+  --section-padding: clamp(80px, 12vh, 160px) 24px;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  overflow-x: clip;
+}
+
+section {
+  width: 100%;
+  min-height: 150vh;
+  min-height: 150dvh;
+  padding: var(--section-padding);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Scroll Reveal Base States */
+.reveal-text {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: transform, opacity;
+}
+
+.reveal-card {
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
+  filter: blur(10px);
+  will-change: transform, opacity, filter;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-nebula-cyan);
+  color: var(--color-void);
+  padding: 12px 24px;
+  z-index: 10000;
+  border-radius: 0 0 12px 12px;
+  font-weight: 700;
+  transition: top 0.3s;
+}
+
+.skip-link:focus-visible {
+  top: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-nebula-cyan);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
