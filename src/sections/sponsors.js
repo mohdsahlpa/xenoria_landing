@@ -26,8 +26,8 @@ export function initSponsors() {
       <div class="sponsors__tiers">
         <div class="sponsors__tier" data-tier="title">
           <h3 class="tier-label">Title Sponsor</h3>
-          <div class="tier-logos">
-            <div class="sponsor-card">
+          <div class="tier-logos" role="list" aria-label="Title sponsor">
+            <div class="sponsor-card" role="listitem">
               <span class="sponsor-name">SPACEX</span>
             </div>
           </div>

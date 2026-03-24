@@ -8,7 +8,7 @@ export function initDock() {
     <div class="dock__container">
       <div class="dock__inner">
         <div class="dock__header">
-          <a href="/" class="dock__logo" aria-label="Xenoria home" data-nav="/">XN<span>×</span>26</a>
+          <a href="/" class="dock__logo" aria-label="XN×26 — Xenoria home" data-nav="/">XN<span>×</span>26</a>
           <span class="dock__active-display">HOME</span>
           <button class="dock__toggle" aria-label="Toggle Menu" aria-expanded="false">
             <span class="toggle__line"></span>

@@ -9,7 +9,6 @@ body {
   padding: 0;
   overflow-x: clip;
   width: 100%;
-  background-color: var(--color-void);
 }
 
 :root {

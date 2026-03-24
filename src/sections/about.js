@@ -6,30 +6,32 @@ export function initAbout() {
   const about = document.getElementById("about");
   if (!about) return;
 
-  about.innerHTML = `
-    <div class="about__container">
-      <div class="about__text">
-        <span class="about__label reveal-holo">PROTOCOL :: ABOUT_THE_FEST</span>
-        <h2 id="about-heading" class="reveal-holo">Where Curiosity<br>Meets <em>Cosmos</em></h2>
-        <p class="reveal-holo">Xenoria is the annual technical extravaganza of the College of Engineering, bringing together the brightest minds across engineering, design, and science for three days of competitions, workshops, and innovation.</p>
-      </div>
+  if (!about.querySelector('.about__container')) {
+    about.innerHTML = `
+      <div class="about__container">
+        <div class="about__text">
+          <span class="about__label reveal-holo">PROTOCOL :: ABOUT_THE_FEST</span>
+          <h2 id="about-heading" class="reveal-holo">Where Curiosity<br>Meets <em>Cosmos</em></h2>
+          <p class="reveal-holo">Xenoria is the annual technical extravaganza of the College of Engineering, bringing together the brightest minds across engineering, design, and science for three days of competitions, workshops, and innovation.</p>
+        </div>
 
-      <div class="about__stats" role="list">
-        <div class="about__stat reveal-holo" role="listitem">
-          <span class="about__stat-number" data-target="48">0</span>
-          <span class="about__stat-label">Cosmic Events</span>
-        </div>
-        <div class="about__stat reveal-holo" role="listitem">
-          <span class="about__stat-number" data-target="12">0</span>
-          <span class="about__stat-label">Years of Orbit</span>
-        </div>
-        <div class="about__stat reveal-holo" role="listitem">
-          <span class="about__stat-number" data-target="5000">0</span>
-          <span class="about__stat-label">Participants</span>
+        <div class="about__stats" role="list">
+          <div class="about__stat reveal-holo" role="listitem">
+            <span class="about__stat-number" data-target="48">0</span>
+            <span class="about__stat-label">Cosmic Events</span>
+          </div>
+          <div class="about__stat reveal-holo" role="listitem">
+            <span class="about__stat-number" data-target="12">0</span>
+            <span class="about__stat-label">Years of Orbit</span>
+          </div>
+          <div class="about__stat reveal-holo" role="listitem">
+            <span class="about__stat-number" data-target="5000">0</span>
+            <span class="about__stat-label">Participants</span>
+          </div>
         </div>
       </div>
-    </div>
-  `;
+    `;
+  }
 
   // --- Initial State (Hidden in the void) ---
   gsap.set(".reveal-holo", {

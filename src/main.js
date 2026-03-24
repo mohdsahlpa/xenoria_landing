@@ -28,18 +28,10 @@ import { initLenis } from './utils/lenis-setup';
 import { initDock } from './components/dock';
 import { initMobileNav } from './components/mobile-nav';
 import { initCursor } from './components/cursor';
-import { initPreloader } from './components/preloader';
 import { initFooter } from './components/footer';
 import { initA11y } from './utils/a11y';
 import { initHero, revealHero } from './sections/hero';
 import { initAbout } from './sections/about';
-import { initEvents, initEventDetail } from './sections/events';
-import { initSchedule } from './sections/schedule';
-import { initSpeakers } from './sections/speakers';
-import { initSponsors } from './sections/sponsors';
-import { initFAQ } from './sections/faq';
-import { initRegister } from './sections/register';
-import { GLScene } from './gl/scene';
 
 // Register GSAP Plugins
 gsap.registerPlugin(ScrollTrigger, CustomEase);
@@ -62,25 +54,31 @@ function clearContent() {
   ScrollTrigger.getAll().forEach(st => st.kill());
 }
 
-function handleRouteChange(path, initFn, isHome = false) {
-  clearContent();
-  initFn();
+async function handleRouteChange(path, initFn, isHome = false) {
+  // If we are navigating AWAY from home or TO home from another page, clear.
+  // But if it's the INITIAL load and it's home, don't clear (HTML is already there).
+  const main = document.getElementById('main-content');
+  const isInitialHome = isHome && main.querySelector('#hero') && main.querySelector('#about') && !window.hasNavigated;
+  
+  if (!isInitialHome) {
+    clearContent();
+  }
+  
+  await initFn();
+  window.hasNavigated = true;
   
   if (lenisInstance) {
     lenisInstance.scrollTo(0, { immediate: true });
   }
 
-  // Update dock active state with a robust normalized path
+  // Update dock active state
   const normalizedPath = "/" + path.replace(/^\//, "").replace(/\/$/, "");
   
-  // We need to expose a way to update the dock and mobile nav
-  const dock = document.getElementById("dock");
-  if (dock && window.updateDockActive) {
+  if (window.updateDockActive) {
     window.updateDockActive(normalizedPath);
   }
 
-  const mobileNav = document.getElementById("mobile-fab");
-  if (mobileNav && window.updateMobileNavActive) {
+  if (window.updateMobileNavActive) {
     window.updateMobileNavActive(normalizedPath);
   }
   
@@ -96,82 +94,107 @@ function handleRouteChange(path, initFn, isHome = false) {
     revealHero();
   }
 
+  // Ensure ScrollTrigger sees the new content
   setTimeout(() => {
     ScrollTrigger.refresh();
-  }, 100);
+    // If glSceneInstance was initialized LATE, it might need another reinitScroll 
+    // after ScrollTrigger.refresh() has established the page height.
+    if (glSceneInstance && isHome) {
+       glSceneInstance.reinitScroll();
+    }
+  }, 200);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   initDock();
   initMobileNav();
   initFooter();
   initA11y();
   initCursor();
 
-  const canvas = document.getElementById('starfield-canvas');
-  if (canvas && !glSceneInstance) {
-    glSceneInstance = new GLScene(canvas);
-  }
-
   lenisInstance = initLenis();
   window.lenis = lenisInstance;
+
+  // Initialize GL Scene lazily
+  const canvas = document.getElementById('starfield-canvas');
+  if (canvas && !glSceneInstance) {
+    import('./gl/scene').then(({ GLScene }) => {
+      glSceneInstance = new GLScene(canvas);
+      const currentPath = router.getCurrentLocation().url;
+      const isHome = currentPath === "" || currentPath === "/";
+      if (isHome) {
+        glSceneInstance.reinitScroll();
+      } else {
+        glSceneInstance.setStaticState();
+      }
+    });
+  }
 
   router
     .on("/", (match) => {
       handleRouteChange(match.url, () => {
         const main = document.getElementById('main-content');
-        main.innerHTML = `
-          <section id="hero" aria-label="Xenoria hero"></section>
-          <section id="about" aria-labelledby="about-heading"></section>
-        `;
+        if (!main.querySelector('#hero')) {
+          main.innerHTML = `
+            <section id="hero" aria-label="Xenoria hero"></section>
+            <section id="about" aria-labelledby="about-heading"></section>
+          `;
+        }
         initHero();
         initAbout();
       }, true);
     })
     .on("/events", (match) => {
-      handleRouteChange(match.url, () => {
+      handleRouteChange(match.url, async () => {
+        const { initEvents } = await import('./sections/events');
         const main = document.getElementById('main-content');
         main.innerHTML = '<section id="events" aria-labelledby="events-heading"></section>';
         initEvents();
       });
     })
     .on("/schedule", (match) => {
-      handleRouteChange(match.url, () => {
+      handleRouteChange(match.url, async () => {
+        const { initSchedule } = await import('./sections/schedule');
         const main = document.getElementById('main-content');
         main.innerHTML = '<section id="schedule" aria-labelledby="schedule-heading"></section>';
         initSchedule();
       });
     })
     .on("/speakers", (match) => {
-      handleRouteChange(match.url, () => {
+      handleRouteChange(match.url, async () => {
+        const { initSpeakers } = await import('./sections/speakers');
         const main = document.getElementById('main-content');
         main.innerHTML = '<section id="speakers" aria-labelledby="speakers-heading"></section>';
         initSpeakers();
       });
     })
     .on("/sponsors", (match) => {
-      handleRouteChange(match.url, () => {
+      handleRouteChange(match.url, async () => {
+        const { initSponsors } = await import('./sections/sponsors');
         const main = document.getElementById('main-content');
         main.innerHTML = '<section id="sponsors" aria-labelledby="sponsors-heading"></section>';
         initSponsors();
       });
     })
     .on("/faq", (match) => {
-      handleRouteChange(match.url, () => {
+      handleRouteChange(match.url, async () => {
+        const { initFAQ } = await import('./sections/faq');
         const main = document.getElementById('main-content');
         main.innerHTML = '<section id="faq" aria-labelledby="faq-heading"></section>';
         initFAQ();
       });
     })
     .on("/register", (match) => {
-      handleRouteChange(match.url, () => {
+      handleRouteChange(match.url, async () => {
+        const { initRegister } = await import('./sections/register');
         const main = document.getElementById('main-content');
         main.innerHTML = '<section id="register" aria-labelledby="register-heading"></section>';
         initRegister();
       });
     })
     .on("/event/:id", (match) => {
-      handleRouteChange(match.url, () => {
+      handleRouteChange(match.url, async () => {
+        const { initEventDetail } = await import('./sections/events');
         const main = document.getElementById('main-content');
         main.innerHTML = '<section id="event-detail"></section>';
         initEventDetail(match.data.id);

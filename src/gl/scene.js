@@ -75,7 +75,7 @@ export class GLScene {
 
   reinitScroll() {
     this.isStatic = false;
-    // Old method: Direct reset to centered home state
+    // Default visible position in case initScrollCamera fails or is pending ScrollTrigger refresh
     this.camera.position.set(0, 0, 12);
     this.camera.lookAt(0, 0, 0);
     
@@ -84,7 +84,12 @@ export class GLScene {
       this.planetObj.group.scale.set(scale, scale, scale);
     }
 
-    initScrollCamera(this.camera, this.planetObj, this.bloomPass);
+    const mainContent = document.getElementById("main-content");
+    if (mainContent) {
+      initScrollCamera(this.camera, this.planetObj, this.bloomPass);
+    } else {
+      console.warn("GLScene: #main-content not found for scroll reinit");
+    }
   }
 
   setStaticState() {
