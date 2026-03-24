@@ -33,7 +33,7 @@ import { initFooter } from './components/footer';
 import { initA11y } from './utils/a11y';
 import { initHero, revealHero } from './sections/hero';
 import { initAbout } from './sections/about';
-import { initEvents } from './sections/events';
+import { initEvents, initEventDetail } from './sections/events';
 import { initSchedule } from './sections/schedule';
 import { initSpeakers } from './sections/speakers';
 import { initSponsors } from './sections/sponsors';
@@ -174,9 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       handleRouteChange(match.url, () => {
         const main = document.getElementById('main-content');
         main.innerHTML = '<section id="event-detail"></section>';
-        import('./sections/events').then(module => {
-          module.initEventDetail(match.data.id);
-        });
+        initEventDetail(match.data.id);
       });
     })
     .notFound(() => {
