@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "vite --port 3000",
     "build": "vite build",
+    "deploy": "wrangler pages deploy dist",
     "preview": "vite preview --port 3000"
   },
   "devDependencies": {
     "eslint": "^10.1.0",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.8.1",
-    "vite": "^8.0.1"
+    "vite": "^8.0.1",
+    "wrangler": "^4.76.0"
   },
   "dependencies": {
     "@fontsource/fraunces": "^5.2.9",
